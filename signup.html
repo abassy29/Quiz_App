@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup into exam system</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- import tailwind -->
+
+
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body >
+
+    <!-- Toast container -->
+    <!-- <div id="toast-container" class="fixed top-5 right-5 space-y-2 z-50"></div> -->
+
+
+
+
+
+    <div class="container">
+        <div class="header">
+            <div class="exam-icon">
+                <i class='bx bx-book-open'></i>
+            </div>
+            <div class="header-text">Create an account</div>
+        </div>
+
+        <div class="form-div">
+            <form id="myform" action="ExamPage.html">
+
+                <div class="input">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Ahmed Ali">
+                    <span id="name-error"></span>
+                </div>
+
+                <div class="input">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@example.com">
+                    <span id="email-error"></span>
+                </div>
+
+                <div class="input">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" placeholder="********">
+                    <span id="pass-error"></span>
+                </div>
+
+                <div class="input">
+                    <label for="cpass">Confirm Password</label>
+                    <input type="password" id="cpass" placeholder="********">
+                    <span id="cpass-error"></span>
+                </div>
+
+                <div class="submit">
+                    <input type="submit" id="submit" value="Create Account">
+                </div>
+
+            </form>
+            <div class="login">Already have an account? <a href="login.html">Sign in</a></div>
+        </div>
+
+
+    </div>
+
+
+
+    <script src="signup.js"></script>
+</body>
+
+</html>

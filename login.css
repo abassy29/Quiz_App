@@ -1,0 +1,278 @@
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  /* Added: Modern Inter font with system fallbacks */
+}
+
+body {
+  /* background: linear-gradient(
+        135deg,
+        #EEE,
+        #EEE,
+        #7c5cf049,
+        #c084fc7a,
+        #c084fc
+        ); */
+
+
+  background: linear-gradient(to bottom right,
+      #EDE7FF,
+      #E3DBFF,
+      #DAD2FF);
+
+
+  /* background-color: #e9d5ff; */
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+}
+
+.container {
+  background-color: white;
+  backdrop-filter: blur(90px);
+  /* height: 590PX;  */
+  width: 360PX;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.header {
+  /* background-color: #1517a3; */
+  height: 26%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.exam-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  position: relative;
+  margin: 10px auto 20px;
+
+  background: linear-gradient(135deg,
+      #7b5cf0,
+      #9b7df5,
+      #c084fc);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.exam-icon i {
+  font-size: 46px;
+  color: rgba(255, 255, 255, 0.986);
+}
+
+.exam-icon:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+
+.header-text {
+  font-size: 24px;
+  /* Modified: Increased from 20px for better prominence */
+  font-weight: 700;
+  /* Added: Bold weight for header */
+  letter-spacing: -0.5px;
+  /* Added: Tighter spacing for modern look */
+  color: #1a1a1a;
+  /* Added: Darker color for better contrast */
+  margin-top: 10px;
+  text-align: center;
+  line-height: 1.3;
+  /* Added: Improved line height for readability */
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  /* Modified: Increased from 3px for better spacing */
+  margin-left: 5px;
+  font-size: 14px;
+  /* Added: Modern font size */
+  font-weight: 500;
+  /* Added: Medium weight */
+  color: #2d2d2d;
+  /* Added: Darker color for better readability */
+  letter-spacing: -0.2px;
+  /* Added: Subtle letter spacing */
+}
+
+.form-div {
+  width: 100%;
+  box-sizing: border-box;
+  /* position: relative;======================= */
+  /* background-color: #b92e2e; ===============*/
+
+
+}
+
+/*======================================== #pass{
+      position: relative;
+    }
+    #pass-icon{
+      position: absolute;
+      margin-bottom: 200px;
+    } */
+
+/* .icon{
+      position: absolute;
+      padding-bottom: 30px;
+    } =============================================*/
+
+
+.form-div div {
+  margin: 10px 0 6px;
+}
+
+input,
+button {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(135deg,
+      #eff7fa,
+      #eff7fa,
+      #eff7fa,
+      #c3dae237);
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-sizing: border-box;
+  padding-left: 14px;
+  /* Modified: Increased from 10px for better padding */
+  font-size: 15px;
+  /* Added: Modern font size */
+  font-weight: 400;
+  /* Added: Regular weight */
+  color: #1a1a1a;
+  /* Added: Darker text color */
+  letter-spacing: -0.1px;
+  /* Added: Subtle letter spacing */
+  transition: all 0.2s ease;
+  /* Added: Smooth transitions */
+
+  /* background-color: #7b5cf0; */
+}
+
+input:focus {
+  /* Added: Focus state styling */
+  border: 2px solid rgba(123, 92, 240, 0.4);
+  /* Added: Purple border on focus */
+  background: rgba(255, 255, 255, 0.9);
+  /* Added: Lighter background on focus */
+}
+
+input::placeholder {
+  color: rgba(34, 26, 36, 0.5);
+  font-weight: 400;
+  /* Added: Font weight for placeholder */
+}
+
+
+#submit {
+  margin: 10px auto;
+  background: linear-gradient(135deg,
+      #7b5cf0,
+      #9b7df5,
+      #c084fc);
+  color: white;
+  font-size: 15px;
+  /* Modified: Changed from 16px */
+  font-weight: 600;
+  /* Modified: Changed from bold to 600 */
+  letter-spacing: 0.3px;
+  /* Added: Increased spacing for readability */
+  cursor: pointer;
+  /* Added: Pointer cursor */
+  transition: all 0.3s ease;
+  /*Added: Smooth transitions */
+  margin-top: 30px;
+}
+
+#submit:hover {
+  transform: scale(1.02);
+  /* Modified: Scale animation on hover */
+  box-shadow: 0 5px 25px rgba(123, 92, 240, 0.4);
+  /* Modified: Enhanced shadow with purple glow */
+}
+
+.signup {
+  margin: 20px auto 0;
+  /* Modified: Increased top margin from 0 */
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  /* Added: Font size */
+  color: #4a4a4a;
+  /* Added: Medium gray color */
+  font-weight: 400;
+  /* Added: Regular weight */
+}
+
+.signup a {
+  /* Added: Login link styling */
+  color: #7b5cf0;
+  /* Added: Purple color matching theme */
+  font-weight: 500;
+  /* Added: Medium weight */
+  text-decoration: none;
+  /* Added: Remove underline */
+  margin-left: 4px;
+  /* Added: Spacing */
+  transition: color 0.2s ease;
+  /* Added: Smooth color transition */
+}
+
+.signup a:hover {
+  /* Added: Hover state */
+  color: #9b7df5;
+  /* Added: Lighter purple on hover */
+  text-decoration: underline;
+  /* Added: Underline on hover */
+}
+
+span {
+  color: #E51110;
+  font-size: 12px;
+}
+
+
+input.error {
+  border: 2px solid red;
+  font-size: 16px;
+}
+
+input.success {
+  border: 2px solid rgb(54, 230, 54);
+}
+
+#loginError {
+  margin-top: 10px;
+  font-size: 16px;
+  color: red;
+}

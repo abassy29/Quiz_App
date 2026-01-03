@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="quiz.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+<body>
+    <div class="grid grid-cols-12 gap-8 ">
+
+        <div class="col-span-12 sticky top-0 z-50">
+            <div class="header">
+                <div class="nav">
+                    <div class="logo">
+                        <div class="exam-icon py-[4px] px-[8px] lg:py-[4px] lg:px-[10px]">
+                            <i class='bx bx-book-open '></i>
+                        </div>
+                        <div class="title">
+                            <p id="bold" class="font-bold text-lg">JavaScript Exam</p>
+                            <p id="progress" class="text-gray-500 text-lg">Question 1 of 5</p>
+                        </div>
+
+                    </div>
+
+                    <div class="timer">
+                        <span class="icon"><i class="fa-regular fa-clock"></i></span>
+                        <span id="timer" class="time"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="progress">
+                    <div class="tprogress"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Question -->
+
+        <div class="col-span-12 bg-gray-100 rounded-xl m-5 p-8 mb-0 flex flex-col gap-4 lg:col-span-8 lg:mx-10 lg:p-10 shadow-xl border-white">
+            <!-- first line question no and flag -->
+            <div class="flex justify-between">
+                <div class="px-3 py-1 bg-violet-100 text-violet-400 text-lg font-bold rounded-2xl">
+                    <p id="question-number">Question 1</p>
+                </div>
+                <div
+                    class="flex items-center hover:bg-[#b24bf3] transition-colors duration-200 hover:text-orange-500 p-2 rounded-lg text-orange-500">
+                    <i class="flag fa-regular fa-flag text-lg font-semibold"></i>
+                </div>
+            </div>
+            <!-- questiontext -->
+            <div id="question-text" class="text-2xl font-bold">
+                What does HTML stand for?
+            </div>
+            <!-- choices -->
+            <div id="options-container" class="flex flex-col gap-3"></div>
+        </div>
+
+        <!--  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- flags -->
+        <div id="flagcontainer"
+            class="hidden col-span-3 bg-transparent mb-12 mt-24 p-6 rounded-xl lg:flex flex-col justify-between shadow-xl border border-white">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fa-solid fa-flag text-orange-500"></i>
+                    <h3 class="text-gray-800 font-bold">Flagged Questions</h3>
+                </div>
+                <div id="flaggedquestionlist" class="flex flex-col max-h-48 overflow-y-auto ">
+
+
+                    <!-- <p class="text-gray-800 flex flex-col mb-15 font-normal">
+                    No flagged questions yet. Click the bookmark icon to flag questions for review.
+                </p> -->
+                </div>
+                <!-- <div
+                        class="col-span-3 py-3 flex items-center gap-2 bg-purple-200 duration-300 rounded-lg text-center justify-between px-3 mb-3 cursor-pointer hover:border-violet-500 transition border border-transparent">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full text-orange-500 flex items-center justify-center bg-white font-bold text-sm shadow-sm">
+                                1</span>
+                            <span class="text-gray-800 font-semibold">Question: 1</span>
+                        </div>
+                        <div>
+                        <i id="flagicon"
+                            class="fa-regular fa-flag text-orange-500 p-2 rounded-lg transition-colors duration-200 hover:bg-[#b24bf3]"></i>
+                    </div>
+                </div> -->
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg text-center shadow-sm ">
+                    <div class="text-gray-900 font-bold text-xl" id="answeredCount">0</div>
+                    <div class="text-gray-400 font-bold">Answered</div>
+                </div>
+                <div class=" bg-[#fff8ee] p-4 rounded-lg text-center shadow-sm">
+                    <div id="flagcounter" class="font-bold text-orange-500 text-xl">0</div>
+                    <div class="text-gray-400 font-bold">Flagged</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-span-12 px-5 flex items-center justify-between  rounded-xl lg:col-span-8 lg:mx-5  ">
+
+            <!-- Previous -->
+            <button id="prevBtn"
+                class="flex items-center gap-2 mr-3 px-4 py-2 rounded-lg bg-purple-50 text-gray-500 hover:bg-purple-200 disabled:opacity-50">
+                ‹ Previous
+            </button>
+
+            <!-- Numbers -->
+
+
+            <!-- Next -->
+            <button id="nextBtn"
+                class="flex items-center gap-2 px-6 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700">
+                Next ›
+            </button>
+        </div>
+
+        <div class="col-span-12 px-5 mx-7 mb-7 flex items-center justify-center  rounded-xl lg:col-span-8 lg:mx-5">
+            <div id="pagination" class="grid grid-cols-5  gap-4 md:grid-cols-10 ">
+                <!-- generated by JS -->
+            </div>
+        </div>
+        <!-- <p class="text-center mt-4 text-gray-500">
+            <span id="answeredCount">0</span> of <span id="totalCount">5</span> questions answered
+        </p> -->
+
+
+
+
+
+
+
+
+    </div>
+
+    <div id="submitModal" class="fixed inset-0 hidden bg-black/50 z-50  items-center justify-center">
+
+        <div class="bg-white rounded-2xl p-6 mx-auto w-[90%] max-w-md shadow-xl
+           transform transition-all duration-300
+           scale-95 opacity-0" id="modalBox">
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full bg-red-100 ">
+                    <i class="fa-solid fa-triangle-exclamation text-red-600 text-xl"></i>
+
+                </div>
+                <h3 class="text-lg font-semibold">Unanswered Questions</h3>
+            </div>
+
+            <p class="text-gray-600 mb-4">
+                You still have
+                <span id="unansweredCount" class="font-semibold text-red-500"></span>
+                unanswered questions.
+            </p>
+
+            <div class="flex justify-end gap-3">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+                    Go Back
+                </button>
+
+                <button onclick="finalSubmit()"
+                    class="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition">
+                    Submit Anyway
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

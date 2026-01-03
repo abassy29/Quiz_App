@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="login.css" rel="stylesheet">
+
+</head>
+<body>      
+    <div class="container">
+    <div class="toast toast-end p-4" id="toast-container"></div>
+
+
+        <div class="header">
+            <div class="exam-icon">
+                 <i class='bx bx-book-open'></i>
+            </div>
+            <div class="header-text">
+                Sign in to start your exam
+            </div>
+        </div>
+
+    <div class="form-div">
+        <form id="myform">
+           <div class="input">
+                <label for="email">Email</label>
+                <input type="text" placeholder="Enter your email" id="email">
+                <span id="emailerror"></span>
+                <!-- <div class="icon">
+                   <i class='bx  bx-envelope'></i>  
+                </div> -->
+                
+            </div>
+            <div class="input">
+                <label for="pass">Password</label>
+                <input type="password" placeholder="Enter your password" id="pass">
+                <span id="passworderror"></span>
+                <!-- <div id="pass-icon">
+                    <i class='bx  bx-lock'></i> 
+                </div> --> 
+            </div>
+
+            <div id="loginError"></div>
+            <div class="submit">
+               <button type="submit" id="submit">Login</button> 
+            </div>
+            
+        </form>
+
+    </div>
+            <div class="signup">
+                Don't have an account? <a href="signup.html">Register</a>
+            </div>
+        </div>
+        <script src="login.js"></script>
+</body>
+</html>
