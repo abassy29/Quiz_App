@@ -2,119 +2,125 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exampage</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exampage</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-[linear-gradient(to_bottom_right,#EDE7FF,#E3DBFF,#DAD2FF)]">
-    <div class="cont min-h-[100vh] flex justify-center items-center gap-8 ">
-        <div class="flex justify-center items-center py-9 px-3 w-[600px]">
+<body class="min-h-screen bg-[linear-gradient(to_bottom_right,#EDE7FF,#E3DBFF,#DAD2FF)] font-['Outfit']">
 
-            <div class="flex flex-col justify-center items-center gap-6">
-                <div class="flex flex-col justify-center items-center ">
-                    <div class="text-center  flex flex-col justify-center">
-                        <div class="flex-col">
-                            <!-- Exam Icon -->
-                            <div class="w-16 h-16 rounded-lg mx-auto mb-5 flex items-center justify-center duration-300  hover:scale-105"
-                                style="background: linear-gradient(135deg, #7b5cf0, #9b7df5, #c084fc);">
-                                <i class='bx bx-book-open text-[46px] text-white'></i>
-                            </div>
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-[1000px] py-9">
 
-                            <!-- Gradient Text H1 -->
-                            <h1 id="welcome-msg" class="text-5xl font-bold mb-1"
-                                style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: linear-gradient(135deg, #7b5cf0, #9b7df5, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+      <div class="flex flex-col items-center gap-6">
 
-                            </h1>
-                        </div>
-                        <!-- Paragraph -->
-                        <p class="py-6 font-medium text-lg text-black"
-                            style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
-                            You're all set to begin your exam journey. Take a deep breath, stay focused, and give it
-                            your
-                            best
-                            shot!
-                        </p>
-                    </div>
-                </div>
-                <div class="flex gap-6 justify-center mt-2 flex-wrap ">
-                    <!-- Time Limit Card -->
-                    <div class="card bg-base-100   transition duration-300 ">
-                        <div
-                            class="card-body shadow-sm items-center text-center border border-gray-300 py-8 px-20 rounded-lg flex ">
-                            <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
-                                <!-- Clock icon -->
-                                <i class='bx bx-time-five text-violet-700 text-2xl font-bold'></i>
+        <!-- Header -->
+        <div class="text-center">
+          <!-- Exam Icon -->
+          <div
+            class="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-lg
+                   bg-[linear-gradient(135deg,#7b5cf0,#9b7df5,#c084fc)]
+                   transition-transform duration-300 hover:scale-105">
+            <i class="bx bx-book-open text-[46px] text-white"></i>
+          </div>
 
-                            </div>
-                            <div>
-                                <h2 class="card-title font-display text-xl font-semibold">Time Limit</h2>
-                                <p class="font-body text-base opacity-80">10 minutes</p>
-                            </div>
-                        </div>
-                    </div>
+          <!-- Welcome Text -->
+          <h1 id="welcome-msg"
+              class="text-5xl font-bold mb-1
+                     bg-[linear-gradient(135deg,#7b5cf0,#9b7df5,#c084fc)]
+                     bg-clip-text text-transparent">
+          </h1>
 
-                    <!-- Questions Card -->
-                    <div class="card bg-base-100   transition duration-300  ">
-                        <div
-                            class="card-body shadow-sm items-center text-center border border-gray-300 py-8 px-20 rounded-lg flex">
-                            <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
-                                <!-- Book icon -->
-                                <i class="bx bx-help-circle text-violet-700 text-2xl font-bold"></i>
-
-                            </div>
-                            <h2 class="card-title font-display text-xl font-semibold">Questions</h2>
-                            <p class="font-body text-base opacity-80">10 questions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center mt-8">
-
-                    <button id="nextBtn"
-                        class="bg-[linear-gradient(35deg,#7b5cf0,#9b7df5,#c084fc)] rounded-xl hover:bg-[hsl(24,70%,55%)] text-white px-6 py-3 font-bold transition duration-150 ease-in-out hover:scale-105">
-                        Start Exam </button>
-
-                </div>
-            </div>
+          <p class="mt-4 text-lg font-medium text-slate-600">
+            You're all set to begin your exam journey. Take a deep breath,
+            stay focused, and give it your best shot!
+          </p>
         </div>
+
+        <!-- Cards -->
+        <div class="flex flex-wrap justify-center gap-6 mt-2">
+
+          <!-- Time Limit Card -->
+          <!-- <div class="bg-white rounded-xl transition"> -->
+            <div
+              class="bg-white rounded-xl shadow-lg border border-gray-300
+              flex flex-col items-center text-center gap-1
+              p-10 w-full sm:w-[300px] md:w-[350px]">
+
+              <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
+                <i class="bx bx-time-five text-violet-700 text-2xl font-bold"></i>
+              </div>
+
+              <h2 class="text-xl font-medium text-indigo-950">Time Limit</h2>
+              <p class="opacity-80 text-lg">10 minutes</p>
+            </div>
+          <!-- </div> -->
+
+          <!-- Questions Card -->
+          <!-- <div class="bg-white rounded-xl transition"> -->
+            <div
+              class="bg-white rounded-xl shadow-lg border border-gray-300
+              flex flex-col items-center text-center gap-1
+              p-10 w-full sm:w-[300px] md:w-[350px]">
+
+              <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
+                <i class="bx bx-task text-violet-700 text-2xl font-bold"></i>
+              </div>
+
+              <h2 class="text-xl font-medium text-indigo-950">Questions</h2>
+              <p class="text-lg opacity-80">10 questions</p>
+            </div>
+          <!-- </div> -->
+
+        </div>
+
+        <!-- Button -->
+        <div class="mt-8">
+          <button id="nextBtn"
+            class="px-6 py-3 font-bold text-white rounded-xl
+                   bg-[linear-gradient(35deg,#7b5cf0,#9b7df5,#c084fc)]
+                   transition-transform duration-150 ease-in-out
+                   hover:scale-105">
+            Start Exam
+          </button>
+        </div>
+
+      </div>
     </div>
+  </div>
+
+  
+  <script>
 
 
+    document.addEventListener("DOMContentLoaded", function () {
+      var users = JSON.parse(localStorage.getItem("users")) || [];
+      var currentUser = users.find(user => user.exam && user.exam.logedIn);
+      
+      if (!currentUser || currentUser.exam.logedIn === false) {
+        window.location.replace("login.html");
+      }
 
+      if (currentUser.exam.submited) {
+        window.location.replace("ExamResult.html");
+      }
 
+      var firstName = currentUser.name.split(" ")[0];
+      document.getElementById("welcome-msg").textContent = `Hello, ${firstName}`;
+    });
 
+    document.getElementById("nextBtn").addEventListener("click", function () {
+      window.location.replace("quiz.html");
+    });
+  </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-            var users = JSON.parse(localStorage.getItem("users")) || [];
-            var currentUser = users.find(user => user.exam && user.exam.logedIn);
-            if (currentUser.exam.logedIn == false) {
-                window.location.replace("login.html");
-            }
-            if (currentUser.exam.submited) {
-                window.location.replace("ExamResult.html");
-
-            }
-            if (currentUser) {
-                var firstName = currentUser.name.split(" ")[0];
-                document.getElementById("welcome-msg").textContent = `Hello, ${firstName}`;
-            }
-        });
-
-        var nextBtn = document.getElementById("nextBtn");
-
-        nextBtn.addEventListener("click", function () {
-            window.location.replace("quiz.html");
-        });
-    </script>
 </body>
-
 </html>

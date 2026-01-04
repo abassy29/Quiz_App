@@ -1,3 +1,11 @@
+var users = JSON.parse(localStorage.getItem("users")) || [];
+var user = users.find(u => u.exam.logedIn);
+if (user) {
+    window.location.replace("ExamPage.html");
+}
+
+
+
 var emailinput = document.getElementById("email");         // Email input field
 var passwordinput = document.getElementById("pass");       // Password input field
 var form = document.getElementById("myform");             // Form element

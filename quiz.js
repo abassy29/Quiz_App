@@ -1,3 +1,6 @@
+
+
+
 var users = JSON.parse(localStorage.getItem("users")) || [];
 var user = users.find(u => u.exam.logedIn);
 if (!user) {
@@ -9,6 +12,10 @@ if(user.exam.submited){
 
 }
 
+history.pushState(null, null, location.href);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, location.href);
+});
 
 //check 3la el submit
 
@@ -16,7 +23,7 @@ if(user.exam.submited){
 
 var exam = {
   title: "JavaScript Basics",
-  duration: 10 * 60, // 10 minutes
+  duration: 200 * 60, // 10 minutes
   questions: [
     {
       id: 1,
@@ -28,7 +35,7 @@ var exam = {
     {
       id: 2,
       question: "Which keyword is used to declare a variable?",
-      options: ["var", "let", "const", "All of the above"],
+      options: ["var", "let", "var", "All of the above"],
       correctAnswer: 3,
       isflagged: false
     },
@@ -110,6 +117,15 @@ if (!user.exam.flagged || user.exam.flagged.length === 0) {
 }
 countansweredquestions()
 
+if (!user.exam.questionOrder || user.exam.questionOrder.length === 0) {
+  user.exam.questionOrder = exam.questions
+    .map((_, i) => i)
+    .sort(() => Math.random() - 0.5);
+
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+
 
 
 var timerdiv = document.querySelector(".timer")
@@ -173,10 +189,11 @@ var containercontent = document.getElementById("flaggedquestionlist")
 var hflag = document.getElementById("flagicon")
 
 function syncflag() {
-  var f = exam.questions[user.exam.currentQuestion];
+  realIndex = user.exam.questionOrder[user.exam.currentQuestion];
+  var f = exam.questions[ realIndex ]
   // isflagged = f.isflagged;
 
-  if (user.exam.flagged[user.exam.currentQuestion]) {
+  if (user.exam.flagged[realIndex]) {
     flag.classList.add('fa-solid', 'text-orange-500');
     flag.classList.remove('fa-regular');;
   } else {
@@ -206,20 +223,23 @@ function countflaggedquestions() {
 
 
 
+
 flag.addEventListener("click", function (e) {
-  var f = exam.questions[user.exam.currentQuestion];
+  realIndex = user.exam.questionOrder[user.exam.currentQuestion];
+  var f = exam.questions[ realIndex ]
+
 
 
 
   // f.isflagged = false;
 
-  if (user.exam.flagged[user.exam.currentQuestion]) {
+  if (user.exam.flagged[realIndex]) {
     flag.classList.remove('fa-solid', 'text-orange-500')
     flag.classList.add('fa-regular')
     // hflag.classList.remove('fa-solid','text-orange-500')
     // hflag.classList.add('fa-regular')
     // isflagged = false
-    user.exam.flagged[user.exam.currentQuestion] = false;
+    user.exam.flagged[realIndex] = false;
 
 
   } else {
@@ -229,7 +249,7 @@ flag.addEventListener("click", function (e) {
     // hflag.classList.remove('fa-regular')
     // hflag.classList.add('fa-solid','text-orange-500')
     // isflagged = true
-    user.exam.flagged[user.exam.currentQuestion] = true
+    user.exam.flagged[realIndex] = true
   }
   renderPagination()
   localStorage.setItem("users", JSON.stringify(users));
@@ -242,7 +262,6 @@ flag.addEventListener("click", function (e) {
 // var flagcontainer = document.getElementById("flagcontainer");
 
 function updateflagcontainer() {
-
   containercontent.innerHTML = "";
 
   var flaggedquestion = [];
@@ -263,12 +282,13 @@ function updateflagcontainer() {
   }
   else {
     flaggedquestion.forEach((q , i) => {
+      var displayNumber = user.exam.questionOrder.indexOf(q.index) + 1;
       var div = document.createElement("div")
       div.className = "col-span-3 py-3 flex items-center gap-2 bg-purple-200 duration-300 rounded-lg text-center justify-between px-3 mb-3 cursor-pointer hover:border-violet-500 transition border border-transparent";
       div.innerHTML = `
                 <div class="flex items-center gap-3">
                     <span class="w-8 h-8 rounded-full text-orange-500 flex items-center justify-center bg-white font-bold text-sm shadow-sm">${i + 1}</span>
-                    <span class="text-gray-800 font-semibold">Question: ${q.index + 1}</span>
+                    <span class="text-gray-800 font-semibold">Question: ${displayNumber}</span>
                 </div>
                 <div>
                     <i  class="fa-regular fa-flag text-orange-500 p-2 rounded-lg transition-colors duration-200 hover:bg-[#b24bf3]"></i>
@@ -300,7 +320,7 @@ function updateflagcontainer() {
       div.addEventListener("click", function (e) {
         e.stopPropagation();
         //     user.exam.flagged[index] = false;
-        user.exam.currentQuestion = q.index
+        user.exam.currentQuestion = user.exam.questionOrder.indexOf(q.index);
         renderQuestion();
         renderPagination();
       })
@@ -311,7 +331,7 @@ function updateflagcontainer() {
 
     user.exam.flagged[index] = false;
 
-    if (index === user.exam.currentQuestion) {
+    if (index === user.exam.questionOrder[user.exam.currentQuestion]) {
         syncflag();
     }
     renderPagination()
@@ -392,6 +412,7 @@ function updateNextButton() {
 }
 
 function renderPagination() {
+  realIndex = user.exam.questionOrder[user.exam.currentQuestion];
   pagination.innerHTML = "";
   console.log(user.exam.currentQuestion)
   renderQuestion();
@@ -399,13 +420,14 @@ function renderPagination() {
   countflaggedquestions();
 
 
-  user.exam.visited[user.exam.currentQuestion] = true;
+  // user.exam.flagged[realIndex] = true;
   localStorage.setItem("users", JSON.stringify(users));
   // console.log(user.exam.visited)
 
 
 
   for (let i = 0; i < totalQuestions; i++) {
+    let realIndex = user.exam.questionOrder[i];
     var btn = document.createElement("button");
     //     var answered = user.exam.answers[i] !== -1;
     // var isCurrent = i === user.exam.currentQuestion;
@@ -423,16 +445,16 @@ function renderPagination() {
   transition-all duration-200 ease-in-out
   ${i === user.exam.currentQuestion
         ? "bg-violet-600 text-white scale-110 shadow-md hover:scale-105"
-        : user.exam.visited[i] && user.exam.answers[i] !== -1
+        : user.exam.visited[realIndex] && user.exam.answers[realIndex] !== -1
           ? "bg-green-500 text-white hover:bg-green-400"
-          : user.exam.visited[i]
+          : user.exam.visited[realIndex]
             ? "bg-red-500 text-white hover:bg-red-400 "
             : "bg-gray-200 text-gray-600 hover:bg-gray-300  hover:border-1"
 
       }
 `;
 
-    if (user.exam.flagged[i]) {
+    if (user.exam.flagged[realIndex]) {
       var dot = document.createElement("span");
       dot.className = `
     absolute -top-1 -right-1
@@ -495,7 +517,9 @@ renderPagination();
 //////////////////////////////
 
 function renderQuestion() {
-  var q = exam.questions[user.exam.currentQuestion];
+  realIndex = user.exam.questionOrder[user.exam.currentQuestion];
+  user.exam.visited[realIndex] = true;
+  var q = exam.questions[ realIndex ]
   var optionsContainer = document.getElementById("options-container");
   var questionNumber = document.getElementById("question-number");
   var progress = document.getElementById("progress");
@@ -512,7 +536,7 @@ function renderQuestion() {
   optionsContainer.innerHTML = "";
 
   q.options.forEach((opt, i) => {
-    var isSelected = user.exam.answers[user.exam.currentQuestion] === i;
+    var isSelected = user.exam.answers[realIndex] === i;
     var optionDiv = document.createElement("div");
 
 optionDiv.className = `
@@ -536,7 +560,7 @@ optionDiv.innerHTML = `
 
 
     optionDiv.addEventListener("click", function () {
-      user.exam.answers[user.exam.currentQuestion] = i;
+      user.exam.answers[realIndex] = i;
       localStorage.setItem("users", JSON.stringify(users));
       countansweredquestions();
       renderQuestion();
@@ -562,25 +586,19 @@ optionDiv.innerHTML = `
 
 function submitExam() {
 
-  var counter = 0
-  for (var i = 0; i < exam.questions.length; i++) {
-    if (user.exam.answers[i] === -1) {
-      counter++;
-    }
-  }
 
-  // var unanswered = user.exam.answers
-  //   .map((a, i) => a === -1 ? i + 1 : null)
-  //   .filter(Boolean);
+  var unanswered = user.exam.answers
+    .map((a, i) => a === -1 ? i + 1 : null)
+    .filter(Boolean);
 
   var modalBox = document.getElementById("modalBox");
   var title = modalBox.querySelector("h3");
   var msg = modalBox.querySelector("p");
   var submitBtn = modalBox.querySelector("button[onclick='finalSubmit()']");
 
-  if (counter > 0) {
+  if (unanswered.length > 0) {
     title.textContent = "Unanswered Questions";
-    msg.innerHTML = `You still have <span id="unansweredCount" class="font-semibold text-red-500">${counter}</span> unanswered questions.`;
+    msg.innerHTML = `You still have <span id="unansweredCount" class="font-semibold text-red-500">${unanswered.length}</span> unanswered questions.`;
     submitBtn.textContent = "Submit Anyway";
   } else {
     title.textContent = "Submit Exam";
@@ -594,29 +612,44 @@ function submitExam() {
 function finalSubmit() {
   clearInterval(timerInterval);
 
+  var modal = document.getElementById("submitModal");
+  var box = document.getElementById("modalBox");
 
-  let score = 0;
-  exam.questions.forEach((q, i) => {
-    if (user.exam.answers[i] === q.correctAnswer) {
-      score++;
-    }
-  });
-
-
-  user.exam.submited = true;
-  user.exam.score = score;
-  user.exam.endTime = Date.now();
-
-  if (!user.exam.completionMessage) {
-    user.exam.completionMessage = "Submitted Successfully";
+  if (modal.classList.contains("hidden")) {
+    openModal();
   }
 
-  localStorage.setItem("users", JSON.stringify(users));
+  box.innerHTML = `
+    <div class="flex flex-col items-center justify-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-violet-200 border-t-violet-600"></div>
+        <p class="mt-4 text-gray-600 font-semibold text-lg">Submitting Exam...</p>
+    </div>
+  `;
 
-  // تحويل لصفحة النتيجة
-  window.location.replace("ExamResult.html");
+  setTimeout(() => {
+    // حساب النتيجة
+    let score = 0;
+    exam.questions.forEach((q, i) => {
+      if (user.exam.answers[i] === q.correctAnswer) {
+        score++;
+      }
+    });
+
+    // حفظ النتيجة
+    user.exam.submited = true;
+    user.exam.score = score;
+    user.exam.endTime = Date.now();
+
+    if (!user.exam.completionMessage) {
+      user.exam.completionMessage = "Submitted Successfully";
+    }
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // تحويل لصفحة النتيجة
+    window.location.replace("ExamResult.html");
+  }, 2000);
 }
-
 
 
 
@@ -627,6 +660,7 @@ function openModal() {
   var box = document.getElementById("modalBox");
 
   modal.classList.remove("hidden");
+  modal.classList.add("flex");
 
   setTimeout(() => {
     box.classList.remove("scale-95", "opacity-0");
@@ -643,6 +677,7 @@ function closeModal() {
 
   setTimeout(() => {
     modal.classList.add("hidden");
+    modal.classList.remove("flex");
   }, 300);
 }
 

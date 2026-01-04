@@ -3,6 +3,11 @@ var users = JSON.parse(localStorage.getItem ("users")) || []
 var user = users.find(u => u.exam && u.exam.logedIn)   
 
 
+history.pushState(null, null, location.href);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, location.href);
+});
+
   if (!user || !user.exam.submited) {      
     window.location.href = "login.html";
   }

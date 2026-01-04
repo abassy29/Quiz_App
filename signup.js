@@ -1,3 +1,13 @@
+var users = JSON.parse(localStorage.getItem("users")) || [];
+var user = users.find(u => u.exam.logedIn);
+if (user) {
+    window.location.replace("ExamPage.html");
+}
+
+
+
+
+
 function signup(name, email, password) {
     var users = JSON.parse(localStorage.getItem("users")) || [];
 
