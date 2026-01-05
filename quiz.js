@@ -291,7 +291,7 @@ function updateflagcontainer() {
     flaggedquestion.forEach((q , i) => {
       var displayNumber = user.exam.questionOrder.indexOf(q.index) + 1;
       var div = document.createElement("div")
-      div.className = "col-span-3 py-3 flex items-center gap-2 bg-purple-200 duration-300 rounded-lg text-center justify-between px-3 mb-3 cursor-pointer hover:border-violet-500 transition border border-transparent";
+      div.className = "col-span-3 py-3 flex items-center gap-2 bg-violet-200 duration-300 rounded-lg text-center justify-between px-3 mb-3 cursor-pointer hover:border-violet-500 transition border border-transparent";
       div.innerHTML = `
                 <div class="flex items-center gap-3">
                     <span class="w-8 h-8 rounded-full text-orange-500 flex items-center justify-center bg-white font-bold text-sm shadow-sm">${i + 1}</span>
