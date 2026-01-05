@@ -634,7 +634,7 @@ function finalSubmit() {
   `;
 
   setTimeout(() => {
-    // حساب النتيجة
+
     let score = 0;
     exam.questions.forEach((q, i) => {
       if (user.exam.answers[i] === q.correctAnswer) {
@@ -642,7 +642,7 @@ function finalSubmit() {
       }
     });
 
-    // حفظ النتيجة
+  
     user.exam.submited = true;
     user.exam.score = score;
     user.exam.endTime = Date.now();
@@ -653,7 +653,7 @@ function finalSubmit() {
 
     localStorage.setItem("users", JSON.stringify(users));
 
-    // تحويل لصفحة النتيجة
+ 
     window.location.replace("ExamResult.html");
   }, 2000);
 }
