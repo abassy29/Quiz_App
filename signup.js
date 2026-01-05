@@ -30,6 +30,7 @@ function signup(name, email, password) {
 
             submited: false,
             logedIn: false,
+            started:false,
 
 
         }
@@ -418,3 +419,13 @@ function showToast(message, type) {
         setTimeout(function () { document.body.removeChild(toast); }, 500);
     }, 5000);
 }
+
+document.querySelectorAll('.toggle-password').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const input = this.previousElementSibling;
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        this.classList.toggle('bx-show');
+        this.classList.toggle('bx-hide');
+    });
+});

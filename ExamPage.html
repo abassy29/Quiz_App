@@ -25,16 +25,14 @@
         <!-- Header -->
         <div class="text-center">
           <!-- Exam Icon -->
-          <div
-            class="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-lg
+          <div class="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-lg
                    bg-[linear-gradient(135deg,#7b5cf0,#9b7df5,#c084fc)]
                    transition-transform duration-300 hover:scale-105">
             <i class="bx bx-book-open text-[46px] text-white"></i>
           </div>
 
           <!-- Welcome Text -->
-          <h1 id="welcome-msg"
-              class="text-5xl font-bold mb-1
+          <h1 id="welcome-msg" class="text-5xl font-bold mb-1
                      bg-[linear-gradient(135deg,#7b5cf0,#9b7df5,#c084fc)]
                      bg-clip-text text-transparent">
           </h1>
@@ -50,42 +48,39 @@
 
           <!-- Time Limit Card -->
           <!-- <div class="bg-white rounded-xl transition"> -->
-            <div
-              class="bg-white rounded-xl shadow-lg border border-gray-300
+          <div class="bg-white rounded-xl shadow-lg border border-gray-300
               flex flex-col items-center text-center gap-1
               p-10 w-full sm:w-[300px] md:w-[350px]">
 
-              <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
-                <i class="bx bx-time-five text-violet-700 text-2xl font-bold"></i>
-              </div>
-
-              <h2 class="text-xl font-medium text-indigo-950">Time Limit</h2>
-              <p class="opacity-80 text-lg">10 minutes</p>
+            <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
+              <i class="bx bx-time-five text-violet-700 text-2xl font-bold"></i>
             </div>
+
+            <h2 class="text-xl font-medium text-indigo-950">Time Limit</h2>
+            <p class="opacity-80 text-lg">10 minutes</p>
+          </div>
           <!-- </div> -->
 
           <!-- Questions Card -->
           <!-- <div class="bg-white rounded-xl transition"> -->
-            <div
-              class="bg-white rounded-xl shadow-lg border border-gray-300
+          <div class="bg-white rounded-xl shadow-lg border border-gray-300
               flex flex-col items-center text-center gap-1
               p-10 w-full sm:w-[300px] md:w-[350px]">
 
-              <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
-                <i class="bx bx-task text-violet-700 text-2xl font-bold"></i>
-              </div>
-
-              <h2 class="text-xl font-medium text-indigo-950">Questions</h2>
-              <p class="text-lg opacity-80">10 questions</p>
+            <div class="bg-purple-200 px-3 py-2 rounded-full mb-2">
+              <i class="bx bx-task text-violet-700 text-2xl font-bold"></i>
             </div>
+
+            <h2 class="text-xl font-medium text-indigo-950">Questions</h2>
+            <p class="text-lg opacity-80">10 questions</p>
+          </div>
           <!-- </div> -->
 
         </div>
 
         <!-- Button -->
         <div class="mt-8">
-          <button id="nextBtn"
-            class="px-6 py-3 font-bold text-white rounded-xl
+          <button id="nextBtn" class="px-6 py-3 font-bold text-white rounded-xl
                    bg-[linear-gradient(35deg,#7b5cf0,#9b7df5,#c084fc)]
                    transition-transform duration-150 ease-in-out
                    hover:scale-105">
@@ -97,37 +92,46 @@
     </div>
   </div>
 
-  
+
   <script>
 
 
     document.addEventListener("DOMContentLoaded", function () {
-      var users = JSON.parse(localStorage.getItem("users")) || [];
-      var currentUser = users.find(user => user.exam && user.exam.logedIn);
-      
+      users = JSON.parse(localStorage.getItem("users")) || [];
+      currentUser = users.find(user => user.exam && user.exam.logedIn);
+
       if (!currentUser || currentUser.exam.logedIn === false) {
         window.location.replace("login.html");
       }
 
-      
+
 
       if (currentUser.exam.submited) {
         window.location.replace("ExamResult.html");
       }
 
-      if(currentUser.exam.startTime !== null){
+      if (currentUser.exam.started) {
         window.location.replace("quiz.html");
       }
 
 
+
       var firstName = currentUser.name.split(" ")[0];
       document.getElementById("welcome-msg").textContent = `Hello, ${firstName}`;
+
+
+
+
     });
 
     document.getElementById("nextBtn").addEventListener("click", function () {
+      currentUser.exam.started = true;
+      currentUser.exam.startTime = Date.now();
+      localStorage.setItem("users", JSON.stringify(users));
       window.location.replace("quiz.html");
     });
   </script>
 
 </body>
+
 </html>

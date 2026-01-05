@@ -23,7 +23,7 @@ body {
 
 
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +35,7 @@ body {
   background-color: white;
   /*ffffff4f */
   backdrop-filter: blur(90px);
+
   /* height: 590PX; */
   width: 450PX;
   border-radius: 16px;
@@ -260,4 +261,32 @@ input.success {
 
   font-size: 13px;
 
+}
+
+
+.password-wrapper {
+    position: relative;
+}
+
+.form-div .password-wrapper {
+    margin: 0;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+}
+
+.toggle-password:hover {
+    color: #000;
 }

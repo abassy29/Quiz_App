@@ -209,3 +209,13 @@ function showMailError(message) {
     emailinput.classList.remove("success");
     emailinput.classList.add("error");
 }
+
+document.querySelectorAll('.toggle-password').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const input = this.previousElementSibling;
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        this.classList.toggle('bx-show');
+        this.classList.toggle('bx-hide');
+    });
+});

@@ -276,3 +276,30 @@ input.success {
   font-size: 16px;
   color: red;
 }
+
+.password-wrapper {
+    position: relative;
+}
+
+.form-div .password-wrapper {
+    margin: 0;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+}
+
+.toggle-password:hover {
+    color: #000;
+}

@@ -12,10 +12,16 @@ if(user.exam.submited){
 
 }
 
-if (!user.exam.startTime) {
-  user.exam.startTime = Date.now();
-  localStorage.setItem("users", JSON.stringify(users));
+if(!user.exam.started){
+  // console.log("saskjahsakj")
+  window.location.replace("ExamPage.html");
+  
 }
+
+// if (!user.exam.startTime) {
+//   user.exam.startTime = Date.now();
+//   localStorage.setItem("users", JSON.stringify(users));
+// }
 
 
 
