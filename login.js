@@ -162,7 +162,7 @@ form.addEventListener("submit", function (e) {
     showToast("Login successful", "success");
     setTimeout(function () {
         window.location.href = "ExamPage.html";
-    }, 500);
+    }, 2000);
 });
 
 
@@ -193,7 +193,7 @@ function showToast(message, type) {
         toast.style.transition = "opacity 0.5s ease";
         toast.style.opacity = "0";
         setTimeout(function () { document.body.removeChild(toast); }, 500);
-    }, 3000);
+    }, 5000);
 }
 
 

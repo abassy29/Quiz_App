@@ -190,6 +190,7 @@ cpassInput.addEventListener("input", validateConfirmPassword);
 var form = document.getElementById("myform");
 
 form.addEventListener("submit", function (e) {
+    e.preventDefault(); 
 
     validateName();
     validateEmail();
@@ -197,37 +198,32 @@ form.addEventListener("submit", function (e) {
     validateConfirmPassword();
 
     if (!(valid_cpass && valid_email && valid_name && valid_pass)) {
-
-        e.preventDefault();
+        return;
     }
 
-    else {
-        var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-        if (existingUsers.some(u => u.email === emailInput.value)) {
-            e.preventDefault();
-            showToast("Email already exists! Please <a href='login.html' style='color: #fff; text-decoration: underline; font-weight: bold;'>login</a>.");
-            return;
-        }
-
-        signup(nameInput.value, emailInput.value, passInput.value)
-        //change logedIn to true
-        var users = JSON.parse(localStorage.getItem("users")) || [];
-
-        // Reset logedIn for all users to ensure only the new one is logged in
-        users.forEach(u => { if (u.exam) u.exam.logedIn = false; });
-
-        // Log in the newly created user (last one in the list)
-        var newUser = users[users.length - 1];
-        if (newUser) newUser.exam.logedIn = true;
-
-        localStorage.setItem("users", JSON.stringify(users));
-        //color light green
-        showToast("Account created successfully 🎉", "success");
-        setTimeout(function () {
-            form.submit();
-        }, 5000);
+    var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    if (existingUsers.some(u => u.email === emailInput.value)) {
+        showToast(
+          "Email already exists! Please <a href='login.html' style='color:#fff;text-decoration:underline;font-weight:bold;'>login</a>."
+        );
+        return;
     }
+
+    signup(nameInput.value, emailInput.value, passInput.value);
+
+    var users = JSON.parse(localStorage.getItem("users")) || [];
+    users.forEach(u => u.exam.logedIn = false);
+    users[users.length - 1].exam.logedIn = true;
+    localStorage.setItem("users", JSON.stringify(users));
+
+    showToast("Account created successfully", "success");
+
+    
+    setTimeout(() => {
+        window.location.href = "ExamPage.html";
+    }, 2000);
 });
+
 
 
 
@@ -420,5 +416,5 @@ function showToast(message, type) {
         toast.style.transition = "opacity 0.5s ease";
         toast.style.opacity = "0";
         setTimeout(function () { document.body.removeChild(toast); }, 500);
-    }, 3000);
+    }, 5000);
 }

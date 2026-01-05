@@ -109,9 +109,16 @@
         window.location.replace("login.html");
       }
 
+      
+
       if (currentUser.exam.submited) {
         window.location.replace("ExamResult.html");
       }
+
+      if(currentUser.exam.startTime !== null){
+        window.location.replace("quiz.html");
+      }
+
 
       var firstName = currentUser.name.split(" ")[0];
       document.getElementById("welcome-msg").textContent = `Hello, ${firstName}`;

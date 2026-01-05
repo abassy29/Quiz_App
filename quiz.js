@@ -12,6 +12,13 @@ if(user.exam.submited){
 
 }
 
+if (!user.exam.startTime) {
+  user.exam.startTime = Date.now();
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+
+
 history.pushState(null, null, location.href);
 window.addEventListener('popstate', function () {
     history.pushState(null, null, location.href);
@@ -23,7 +30,7 @@ window.addEventListener('popstate', function () {
 
 var exam = {
   title: "JavaScript Basics",
-  duration: 200 * 60, // 10 minutes
+  duration: 10 * 60, // 10 minutes
   questions: [
     {
       id: 1,
